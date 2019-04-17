@@ -19,7 +19,7 @@ class Sidebar extends Component {
         {
           title: 'Table List',
           icon: 'content_paste',
-          link: '/table'
+          link: 'table'
         },
         {
           title: 'Typography',
@@ -44,7 +44,7 @@ class Sidebar extends Component {
         {
           title: 'RTL Support',
           icon: 'language',
-          link: 'support'
+          link: 'supports'
         },
         {
           title: 'Upgrade to PRO',

@@ -44,22 +44,22 @@ class Settings extends Component {
             <li className="header-title">Images</li>
             <li className="active">
               <a className="img-holder switch-trigger" href="#!">
-                <img src="./img/sidebar-1.jpg" alt="" />
+                <img src="./assets/img/sidebar-1.jpg" alt="" />
               </a>
             </li>
             <li>
               <a className="img-holder switch-trigger" href="#!">
-                <img src="./img/sidebar-2.jpg" alt="" />
+                <img src="./assets/img/sidebar-2.jpg" alt="" />
               </a>
             </li>
             <li>
               <a className="img-holder switch-trigger" href="#!">
-                <img src="./img/sidebar-3.jpg" alt="" />
+                <img src="./assets/img/sidebar-3.jpg" alt="" />
               </a>
             </li>
             <li>
               <a className="img-holder switch-trigger" href="#!">
-                <img src="./img/sidebar-4.jpg" alt="" />
+                <img src="./assets/img/sidebar-4.jpg" alt="" />
               </a>
             </li>
             <li className="button-container">

@@ -28,7 +28,7 @@ class Navbar extends Component {
               <div className="input-group no-border">
                 <input
                   type="text"
-                  defaultValue
+                  defaultValue=""
                   className="form-control"
                   placeholder="Search..."
                 />

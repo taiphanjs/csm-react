@@ -52,7 +52,8 @@ const initialState = {
   styleFade: { opacity: 1, from: { opacity: 0 }, duration: 1000 },
   itemBackground: '',
   colorActive: 0,
-  activeIndexBGSidebar: 0
+  activeIndexBGSidebar: 0,
+  navbavStatus: false,
 };
 
 const commonReducer = (state = initialState, action) => {

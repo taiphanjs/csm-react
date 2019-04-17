@@ -80,7 +80,7 @@ class Settings extends Component {
                 href="#!"
                 className="btn btn-primary btn-block"
               >
-                Free Download
+                More Details
               </a>
             </li>
             <li className="button-container">
@@ -91,7 +91,7 @@ class Settings extends Component {
                 View Documentation
               </a>
             </li>
-            <li className="button-container github-star">
+            <li className="button-container">
               <a
                 className="github-button"
                 href="#!"

@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { getUsers } from '../../store/user/userActions';
 
 class Users extends Component {
+  
   render() {
+    
     return (
       <div className="container-fluid">
         <div className="row">
@@ -134,5 +138,10 @@ class Users extends Component {
     );
   }
 }
-
-export default Users;
+const mapStateToProps = state => {
+  return {
+    usersList: state.userReducer.usersList,
+    loaded: state.userReducer.loaded,
+  }
+}
+export default connect(mapStateToProps, { getUsers } )(Users);

@@ -4,112 +4,100 @@ class Typography extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <div className="navbar-wrapper">
-          <a className="navbar-brand" href="#pablo">
-            Typography
-          </a>
-        </div>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          aria-controls="navigation-index"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="sr-only">Toggle navigation</span>
-          <span className="navbar-toggler-icon icon-bar" />
-          <span className="navbar-toggler-icon icon-bar" />
-          <span className="navbar-toggler-icon icon-bar" />
-        </button>
-        <div className="collapse navbar-collapse justify-content-end">
-          <form className="navbar-form">
-            <div className="input-group no-border">
-              <input
-                type="text"
-                defaultValue
-                className="form-control"
-                placeholder="Search..."
-              />
-              <button
-                type="submit"
-                className="btn btn-white btn-round btn-just-icon"
-              >
-                <i className="material-icons">search</i>
-                <div className="ripple-container" />
-              </button>
+        <div className="card">
+          <div className="card-header card-header-primary">
+            <h4 className="card-title">Material Dashboard Heading</h4>
+            <p className="card-category">Created using Roboto Font Family</p>
+          </div>
+          <div className="card-body">
+            <div id="typography">
+              <div className="card-title">
+                <h2>Typography</h2>
+              </div>
+              <div className="row">
+                <div className="tim-typo">
+                  <h1>
+                    <span className="tim-note">Header 1</span>The Life of Material Dashboard </h1>
+                </div>
+                <div className="tim-typo">
+                  <h2>
+                    <span className="tim-note">Header 2</span>The Life of Material Dashboard</h2>
+                </div>
+                <div className="tim-typo">
+                  <h3>
+                    <span className="tim-note">Header 3</span>The Life of Material Dashboard</h3>
+                </div>
+                <div className="tim-typo">
+                  <h4>
+                    <span className="tim-note">Header 4</span>The Life of Material Dashboard</h4>
+                </div>
+                <div className="tim-typo">
+                  <h5>
+                    <span className="tim-note">Header 5</span>The Life of Material Dashboard</h5>
+                </div>
+                <div className="tim-typo">
+                  <h6>
+                    <span className="tim-note">Header 6</span>The Life of Material Dashboard</h6>
+                </div>
+                <div className="tim-typo">
+                  <p>
+                    <span className="tim-note">Paragraph</span>
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
+                </div>
+                <div className="tim-typo">
+                  <span className="tim-note">Quote</span>
+                  <blockquote className="blockquote">
+                    <p>
+                      I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                    </p>
+                    <small>
+                      Kanye West, Musician
+                    </small>
+                  </blockquote>
+                </div>
+                <div className="tim-typo">
+                  <span className="tim-note">Muted Text</span>
+                  <p className="text-muted">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                  </p>
+                </div>
+                <div className="tim-typo">
+                  <span className="tim-note">Primary Text</span>
+                  <p className="text-primary">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers... </p>
+                </div>
+                <div className="tim-typo">
+                  <span className="tim-note">Info Text</span>
+                  <p className="text-info">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers... </p>
+                </div>
+                <div className="tim-typo">
+                  <span className="tim-note">Success Text</span>
+                  <p className="text-success">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers... </p>
+                </div>
+                <div className="tim-typo">
+                  <span className="tim-note">Warning Text</span>
+                  <p className="text-warning">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                  </p>
+                </div>
+                <div className="tim-typo">
+                  <span className="tim-note">Danger Text</span>
+                  <p className="text-danger">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers... </p>
+                </div>
+                <div className="tim-typo">
+                  <h2>
+                    <span className="tim-note">Small Tag</span>
+                    Header with small subtitle
+                    <br />
+                    <small>Use "small" tag for the headers</small>
+                  </h2>
+                </div>
+              </div>
             </div>
-          </form>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="#pablo">
-                <i className="material-icons">dashboard</i>
-                <p className="d-lg-none d-md-block">Stats</p>
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link"
-                href="http://example.com"
-                id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="material-icons">notifications</i>
-                <span className="notification">5</span>
-                <p className="d-lg-none d-md-block">Some Actions</p>
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <a className="dropdown-item" href="#!">
-                  Mike John responded to your email
-                </a>
-                <a className="dropdown-item" href="#!">
-                  You have 5 new tasks
-                </a>
-                <a className="dropdown-item" href="#!">
-                  You're now friend with Andrew
-                </a>
-                <a className="dropdown-item" href="#!">
-                  Another Notification
-                </a>
-                <a className="dropdown-item" href="#!">
-                  Another One
-                </a>
-              </div>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link"
-                href="#pablo"
-                id="navbarDropdownProfile"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="material-icons">person</i>
-                <p className="d-lg-none d-md-block">Account</p>
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="navbarDropdownProfile"
-              >
-                <a className="dropdown-item" href="#!">
-                  Profile
-                </a>
-                <a className="dropdown-item" href="#!">
-                  Settings
-                </a>
-                <div className="dropdown-divider" />
-                <a className="dropdown-item" href="#!">
-                  Log out
-                </a>
-              </div>
-            </li>
-          </ul>
+          </div>
         </div>
       </div>
     );

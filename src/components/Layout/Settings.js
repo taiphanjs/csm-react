@@ -1,7 +1,50 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { connect } from 'react-redux';
 
 class Settings extends Component {
+  state = {
+    lines: [
+      {
+        class: 'badge filter badge-purple',
+        color: '#9368E9'
+      },
+      {
+        class: 'badge filter badge-azure',
+        color: '#2CA8FF'
+      },
+      {
+        class: 'badge filter badge-green',
+        color: '#18ce0f'
+      },
+      {
+        class: 'badge filter badge-purple',
+        color: '#fd9b16'
+      },
+      {
+        class: 'badge filter badge-warning',
+        color: '#9368e9'
+      },
+      {
+        class: 'badge filter badge-danger',
+        color: '#f44336'
+      },
+      {
+        class: 'badge filter badge-rose',
+        color: '#e91e63'
+      },
+    ],    
+  }
   render() {
+    const { lines } = this.state;
+    const { colorActive, setActiveColor, activeIndexBGSidebar, setBackgroundSidebar } = this.props;
+    const imageBGList = [1, 2, 3, 4].map((item, i) => (
+      <li key={i} className={activeIndexBGSidebar === i ? 'active' : null}>
+          <a href="#!" className="img-holder switch-trigger" onClick={setBackgroundSidebar.bind(this, i)}>
+            <img src={`./assets/img/sidebar-${item}.jpg`} alt=""/>
+          </a>
+      </li>
+    ));
+
     return (
       <div className="fixed-plugin">
         <div className="dropdown show-dropdown">
@@ -13,55 +56,25 @@ class Settings extends Component {
             <li className="adjustments-line">
               <a href="#!" className="switch-trigger active-color">
                 <div className="badge-colors ml-auto mr-auto">
-                  <span
-                    className="badge filter badge-purple"
-                    data-color="purple"
-                  />
-                  <span
-                    className="badge filter badge-azure"
-                    data-color="azure"
-                  />
-                  <span
-                    className="badge filter badge-green"
-                    data-color="green"
-                  />
-                  <span
-                    className="badge filter badge-warning"
-                    data-color="orange"
-                  />
-                  <span
-                    className="badge filter badge-danger"
-                    data-color="danger"
-                  />
-                  <span
-                    className="badge filter badge-rose active"
-                    data-color="rose"
-                  />
+                 {
+                   lines.map((line, i) => (
+                     <span 
+                      key={i} 
+                      data-color={line.color} 
+                      className={colorActive === i ? `${line.class} active` : line.class}
+                      onClick={setActiveColor.bind(this, {
+                        index: i,
+                        color: line.color
+                      })}
+                    />
+                   ))
+                 }
                 </div>
                 <div className="clearfix" />
               </a>
             </li>
             <li className="header-title">Images</li>
-            <li className="active">
-              <a className="img-holder switch-trigger" href="#!">
-                <img src="./assets/img/sidebar-1.jpg" alt="" />
-              </a>
-            </li>
-            <li>
-              <a className="img-holder switch-trigger" href="#!">
-                <img src="./assets/img/sidebar-2.jpg" alt="" />
-              </a>
-            </li>
-            <li>
-              <a className="img-holder switch-trigger" href="#!">
-                <img src="./assets/img/sidebar-3.jpg" alt="" />
-              </a>
-            </li>
-            <li>
-              <a className="img-holder switch-trigger" href="#!">
-                <img src="./assets/img/sidebar-4.jpg" alt="" />
-              </a>
-            </li>
+            <Fragment> { imageBGList } </Fragment>
             <li className="button-container">
               <a
                 href="#!"
@@ -108,4 +121,16 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+const mapStateToProps = state => {
+  return {
+    colorActive: state.commonReducer.colorActive,
+    activeIndexBGSidebar: state.commonReducer.activeIndexBGSidebar,
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  setActiveColor: (activeColor) => dispatch({type: 'ACTIVE_COLOR', payload: activeColor}),
+  setBackgroundSidebar: (activeIndex, e) => dispatch({ type: 'ACTIVE_BACKGROUND_SIDEBAR', payload: activeIndex, e})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

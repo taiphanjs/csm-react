@@ -16,7 +16,11 @@ import Supports from "./components/Pages/Supports";
 import Upgrade from "./components/Pages/Upgrade";
 
 class App extends Component {
+  setActiveTab = (id) => {
+    this.setState({tabActive: id})
+  }
   render() {
+
     return (
       <Router>
         <Fragment>
@@ -26,7 +30,7 @@ class App extends Component {
               <Navbar />
               <div className="content">
                 <Switch>
-                  <Route exact path="/" component={DashBoard} />
+                  <Route exact path="/" component={DashBoard}/>
                   <Route path="/users" component={Users} />
                   <Route path="/table" component={Table} />
                   <Route path="/typography" component={Typography} />

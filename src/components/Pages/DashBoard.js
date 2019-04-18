@@ -6,12 +6,18 @@ import Task from './DashBoard/Task';
 import Employee from './DashBoard/Employee';
 import { getUsers } from '../../store/user/userActions';
 import { getTasks } from '../../store/dashboard/dashboardActions';
+import { setActivePage } from '../../store/common/commonActions';
 
 class DashBoard extends Component {
   componentDidMount() {
     this.props.getUsers();
     this.props.getTasks();
+    this.props.setActivePage({
+      name: 'DashBoard',
+      url: this.props.match.url
+    })
   }
+  
   render() {
     const { usersList, tasksList } = this.props;
     const userItem = usersList.slice(0, 4).map((user, i) => (
@@ -42,4 +48,4 @@ const mapStateToProps = state => {
     tasksList: state.dashboardReducer.tasksList,
   }
 }
-export default connect(mapStateToProps, { getUsers, getTasks })(DashBoard);
+export default connect(mapStateToProps, { getUsers, getTasks, setActivePage })(DashBoard);

@@ -1,4 +1,4 @@
-import { ACTIVE_TAB, ACTIVE_COLOR, ACTIVE_BACKGROUND_SIDEBAR } from './commonTypes';
+import { ACTIVE_TAB, ACTIVE_COLOR, ACTIVE_BACKGROUND_SIDEBAR, ACTIVE_PAGE, TOGGLE_SIDEBAR } from './commonTypes';
 
 const initialState = {
   menuItems: [
@@ -54,6 +54,8 @@ const initialState = {
   colorActive: 0,
   activeIndexBGSidebar: 0,
   navbavStatus: false,
+  activePage: {},
+  sidebarStatus: false
 };
 
 const commonReducer = (state = initialState, action) => {
@@ -73,6 +75,19 @@ const commonReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         activeIndexBGSidebar: action.payload
       });
+    }
+    case ACTIVE_PAGE: {
+      return Object.assign({}, state, {
+        activePage: {
+          page: action.payload.name,
+          url: action.payload.url
+        }
+      });
+    }
+    case TOGGLE_SIDEBAR: {
+      return Object.assign({}, state, {
+        sidebarStatus: action.payload
+      })
     }
     default: 
       return state;

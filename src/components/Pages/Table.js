@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getUsers } from '../../store/user/userActions';
 import { connect } from 'react-redux';
+import { setActivePage } from '../../store/common/commonActions';
 
 class Table extends Component {
   state = {
@@ -8,6 +9,10 @@ class Table extends Component {
   }
   componentDidMount() {
     this.props.getUsers();
+    this.props.setActivePage({
+      name: 'Table List',
+      url: this.props.match.url
+    })
   }
   toggleStyle = () => {
     this.setState({toggleStyle: !this.state.toggleStyle});
@@ -97,4 +102,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getUsers })(Table);
+export default connect(mapStateToProps, { getUsers, setActivePage })(Table);

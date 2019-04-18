@@ -1,6 +1,15 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { setActivePage } from '../../store/common/commonActions';
 
 class Upgrade extends Component {
+  componentDidMount() {
+    this.props.setActivePage({
+      name: 'Upgrade',
+      url: this.props.match.url
+    })
+  }
+  
   render() {
     return (
       <div className="container-fluid">
@@ -82,4 +91,4 @@ class Upgrade extends Component {
     );
   }
 }
-export default Upgrade;
+export default connect(null, { setActivePage })(Upgrade);

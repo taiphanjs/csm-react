@@ -1,4 +1,4 @@
-import { ACTIVE_TAB, ACTIVE_COLOR, ACTIVE_BACKGROUND_SIDEBAR } from './commonTypes';
+import { ACTIVE_TAB, ACTIVE_COLOR, ACTIVE_BACKGROUND_SIDEBAR, ACTIVE_PAGE, TOGGLE_SIDEBAR } from './commonTypes';
 
 export const setActiveTab = activeId => {
   return dispatch => {
@@ -25,6 +25,24 @@ export const setBackgroundSidebar = (activeIndex, e) => {
     return dispatch({
       type: ACTIVE_BACKGROUND_SIDEBAR,
       payload: activeIndex
+    })
+  }
+}
+
+export const setActivePage = (activePage) => {
+  return dispatch => {
+    return dispatch({
+      type: ACTIVE_PAGE,
+      payload: activePage
+    })
+  }
+}
+
+export const toggleSidebar = status => {
+  return dispatch => {
+    return dispatch({
+      type: TOGGLE_SIDEBAR,
+      payload: status
     })
   }
 }

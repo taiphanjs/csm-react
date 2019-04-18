@@ -1,6 +1,14 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { setActivePage } from '../../store/common/commonActions';
 
 class Notifications extends Component {
+  componentDidMount() {
+    this.props.setActivePage({
+      name: 'Notifications',
+      url: this.props.match.url
+    })
+  }
   render() {
     return (
       <div className="container-fluid">
@@ -127,4 +135,4 @@ class Notifications extends Component {
     );
   }
 }
-export default Notifications;
+export default connect(null, { setActivePage })(Notifications);

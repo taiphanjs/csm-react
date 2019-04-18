@@ -1,11 +1,18 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
 import { getUsers } from '../../store/user/userActions';
+import { connect } from 'react-redux';
+import { setActivePage } from '../../store/common/commonActions';
+
 
 class Users extends Component {
+  componentDidMount() {
+    this.props.setActivePage({
+      name: 'User Profile',
+      url: this.props.match.url
+    });
+  }  
   
   render() {
-    
     return (
       <div className="container-fluid">
         <div className="row">
@@ -144,4 +151,4 @@ const mapStateToProps = state => {
     loaded: state.userReducer.loaded,
   }
 }
-export default connect(mapStateToProps, { getUsers } )(Users);
+export default connect(mapStateToProps, { getUsers, setActivePage } )(Users);

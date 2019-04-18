@@ -1,66 +1,56 @@
 import React, { Component } from "react";
 
 class MainBoard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mainBoard: [
+        {
+          classCard: "card-header-success",
+          id: "dailySalesChart",
+          title: "Daily Sales",
+          category: "increase in today sales.",
+          content: "updated 4 minutes ago"
+        },
+        {
+          classCard: "card-header-warning",
+          id: "websiteViewsChart",
+          title: "Email Subscriptions",
+          category: "Last Campaign Performance",
+          content: "campaign sent 2 days ago"
+        },
+        {
+          classCard: "card-header-danger",
+          id: "completedTasksChart",
+          title: "Completed Tasks",
+          category: "Last Campaign Performance",
+          content: "campaign sent 2 days ago"
+        }
+      ]
+    };
+  }
+  
   render() {
-    return (
-      <div className="row">
-        <div className="col-md-4">
-          <div className="card card-chart">
-            <div className="card-header card-header-success">
-              <div className="ct-chart" id="dailySalesChart" />
-            </div>
-            <div className="card-body">
-              <h4 className="card-title">Daily Sales</h4>
-              <p className="card-category">
-                <span className="text-success">
-                  <i className="fa fa-long-arrow-up" /> 55%{" "}
-                </span>{" "}
-                increase in today sales.
-              </p>
-            </div>
-            <div className="card-footer">
-              <div className="stats">
-                <i className="material-icons">access_time</i> updated 4 minutes
-                ago
-              </div>
-            </div>
+    const cardCharts = this.state.mainBoard.map((data, i) => (
+      <div className="col-md-4" key={i}>
+        <div className="card card-chart">
+          <div className={`card-header ${data.classCard}`}>
+            <div className="ct-chart" id={data.id} />
           </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card card-chart">
-            <div className="card-header card-header-warning">
-              <div className="ct-chart" id="websiteViewsChart" />
-            </div>
-            <div className="card-body">
-              <h4 className="card-title">Email Subscriptions</h4>
-              <p className="card-category">Last Campaign Performance</p>
-            </div>
-            <div className="card-footer">
-              <div className="stats">
-                <i className="material-icons">access_time</i> campaign sent 2
-                days ago
-              </div>
-            </div>
+          <div className="card-body">
+            <h4 className="card-title">{data.title}</h4>
+            <p className="card-category">{data.category}</p>
           </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card card-chart">
-            <div className="card-header card-header-danger">
-              <div className="ct-chart" id="completedTasksChart" />
-            </div>
-            <div className="card-body">
-              <h4 className="card-title">Completed Tasks</h4>
-              <p className="card-category">Last Campaign Performance</p>
-            </div>
-            <div className="card-footer">
-              <div className="stats">
-                <i className="material-icons">access_time</i> campaign sent 2
-                days ago
-              </div>
+          <div className="card-footer">
+            <div className="stats">
+              <i className="material-icons">access_time</i> {data.content}
             </div>
           </div>
         </div>
       </div>
+    ));
+    return (
+      <div className="row">{ cardCharts }</div>
     );
   }
 }

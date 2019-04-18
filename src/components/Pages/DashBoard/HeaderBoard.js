@@ -11,7 +11,8 @@ class HeaderBoard extends Component {
           icon_2: "warning",
           icon_fa: "",
           title: "49/50 GB",
-          content: "Get More Space..."
+          content: "Get More Space...",
+          cardHeader: 'card-header-warning'
         },
         {
           catName: "Revenue",
@@ -19,7 +20,8 @@ class HeaderBoard extends Component {
           icon_2: "date_range",
           icon_fa: "",
           title: "$34,245",
-          content: "Last 24 Hours"
+          content: "Last 24 Hours",
+          cardHeader: 'card-header-success'
         },
         {
           catName: "Fixed Issues",
@@ -27,7 +29,8 @@ class HeaderBoard extends Component {
           icon_2: "local_offer",
           icon_fa: "",
           title: "75",
-          content: "Tracked from Github"
+          content: "Tracked from Github",
+          cardHeader: 'card-header-danger'
         },
         {
           catName: "Followers",
@@ -35,7 +38,8 @@ class HeaderBoard extends Component {
           icon_2: "update",
           icon_fa: "fa fa-twitter",
           title: "+245",
-          content: "Just Updated"
+          content: "Just Updated",
+          cardHeader: 'card-header-info'
         }
       ]
     };
@@ -44,7 +48,7 @@ class HeaderBoard extends Component {
     const contents = this.state.headerData.map((data, i) => (
       <div className="col-lg-3 col-md-6 col-sm-6" key={i}>
         <div className="card card-stats">
-          <div className="card-header card-header-warning card-header-icon">
+          <div className={`card-header card-header-icon ${data.cardHeader}`}>
             <div className="card-icon">
               <i className={data.icon_1 !== '' ? 'material-icons': `${data.icon_fa}`}>{data.icon_1 !== '' ? data.icon_1 : null}</i>
             </div>

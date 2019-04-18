@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import { Link }  from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Navbar extends Component {
   render() {
+    const { activePage } = this.props;
     return (
       <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div className="container-fluid">
           <div className="navbar-wrapper">
-            <a className="navbar-brand" href="#pablo">
-              Dashboard
-            </a>
+            <Link className="navbar-brand" to={`${activePage.url}`}>{activePage.page}</Link>
           </div>
           <button
             className="navbar-toggler"
@@ -117,4 +118,10 @@ class Navbar extends Component {
     );
   }
 }
-export default Navbar;
+const mapStateToProps = state => {
+  return {
+    activePage: state.commonReducer.activePage
+  }
+}
+
+export default connect(mapStateToProps, null)(Navbar);

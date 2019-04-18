@@ -1,4 +1,4 @@
-import { GET_TASKS } from './dashboardTypes';
+import { GET_TASKS, DELETE_TASK, EDIT_TASK } from './dashboardTypes';
 
 const initialState = {
   tasksList: [],
@@ -12,8 +12,14 @@ const dashboardReducer = (state = initialState, action) => {
         tasksList: action.payload
       })
     } 
+    case DELETE_TASK: {
+      return Object.assign({}, state, {
+        tasksList: state.tasksList.filter(task => task.id !== action.payload)
+      });
+    }
     default: 
       return state;
   }
 }
+
 export default dashboardReducer;

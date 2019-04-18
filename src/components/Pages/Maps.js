@@ -22,7 +22,7 @@ class Maps extends Component {
 
 const mapStyles = {
   width: '100%',
-  height: 'calc(100% + 70px)',
+  height: 'calc(100% - 70px)',
   marginTop: '-70px'
 }
 

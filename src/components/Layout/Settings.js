@@ -15,14 +15,10 @@ class Settings extends Component {
       {
         class: 'badge filter badge-green',
         color: '#18ce0f'
-      },
-      {
-        class: 'badge filter badge-purple',
-        color: '#fd9b16'
-      },
+      },      
       {
         class: 'badge filter badge-warning',
-        color: '#9368e9'
+        color: '#ff9800'
       },
       {
         class: 'badge filter badge-danger',

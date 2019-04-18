@@ -18,7 +18,7 @@ class Table extends Component {
     this.setState({toggleStyle: !this.state.toggleStyle});
   }
   render() {
-    const { loaded, usersList } = this.props;
+    const { loaded, usersList, itemBackground } = this.props;
     const userItem = loaded 
       ? usersList.map((user, i) => (
         <tr key={i}>
@@ -35,7 +35,7 @@ class Table extends Component {
         <div className="row">
           <div className={this.state.toggleStyle ? 'col-md-12 fade-in-component' : 'col-md-12 fade-out-component'}>
             <div className="card">
-              <div className="card-header card-header-primary">
+              <div className="card-header card-header-primary" style={{background: `${itemBackground}`}}>
                 <h4 className="card-title ">Simple Table</h4>
                 <p className="card-category">
                   {" "}
@@ -63,7 +63,7 @@ class Table extends Component {
           </div>
           <div className={ !this.state.toggleStyle ? 'col-md-12 fade-in-component' : 'col-md-12 fade-out-component' }>
             <div className="card card-plain">
-              <div className="card-header card-header-primary">
+              <div className="card-header card-header-primary" style={{background: `${itemBackground}`}}>
                 <h4 className="card-title mt-0"> Table on Plain Background</h4>
                 <p className="card-category">
                   {" "}
@@ -99,6 +99,7 @@ const mapStateToProps = state => {
   return {
     usersList: state.userReducer.usersList,
     loaded: state.userReducer.loaded,
+    itemBackground: state.commonReducer.itemBackground
   }
 }
 

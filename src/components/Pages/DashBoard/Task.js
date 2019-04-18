@@ -1,6 +1,15 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { deleteTask } from '../../../store/dashboard/dashboardActions';
 
 class Task extends Component {
+  state = {
+    id: '',
+    userId: '',
+    title: '',
+    completed: ''
+  }
+  
   chunkTasks = (arr, size) => {
     let tempArr = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -9,8 +18,8 @@ class Task extends Component {
     }
     return tempArr;
   };
-
-  render() {
+  
+  render() {   
     const hardData = [
       {
         id: 1,
@@ -33,6 +42,7 @@ class Task extends Component {
     ];
     const tasks = this.chunkTasks(this.props.tasksList.slice(0, 12), 4);
     for (let i in tasks) tasks[i].title = hardData[i].title;
+
     const tasksPanes = tasks.map((taskList, i) => (
       <div
         className={i === 0 ? "tab-pane active show" : "tab-pane"}
@@ -59,7 +69,7 @@ class Task extends Component {
                   </div>
                 </td>
                 <td>{task.title}</td>
-                <td className="td-actions text-right">
+                <td className="td-actions text-right" style={{float: 'right'}}>
                   <button
                     type="button"
                     rel="tooltip"
@@ -73,6 +83,7 @@ class Task extends Component {
                     rel="tooltip"
                     title="Remove"
                     className="btn btn-danger btn-link btn-sm"
+                    onClick={this.props.deleteTask.bind(this, task.id )}
                   >
                     <i className="material-icons">close</i>
                   </button>
@@ -120,4 +131,4 @@ class Task extends Component {
     );
   }
 }
-export default Task;
+export default connect(null, { deleteTask })(Task);

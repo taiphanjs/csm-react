@@ -9,13 +9,14 @@ import { getTasks } from '../../store/dashboard/dashboardActions';
 import { setActivePage } from '../../store/common/commonActions';
 
 class DashBoard extends Component {
+
   componentDidMount() {
     this.props.getUsers();
     this.props.getTasks();
     this.props.setActivePage({
       name: 'DashBoard',
       url: this.props.match.url
-    })
+    });
   }
   
   render() {

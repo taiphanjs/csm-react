@@ -13,12 +13,14 @@ class Users extends Component {
   }  
   
   render() {
+    const { itemBackground } = this.props;
+    
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-8">
             <div className="card">
-              <div className="card-header card-header-primary">
+              <div className="card-header card-header-primary" style={{background: `${itemBackground}`}}>
                 <h4 className="card-title">Edit Profile</h4>
                 <p className="card-category">Complete your profile</p>
               </div>
@@ -111,7 +113,7 @@ class Users extends Component {
                       </div>
                     </div>
                   </div>
-                  <button type="submit" className="btn btn-primary pull-right">
+                  <button type="submit" className="btn btn-primary pull-right"  style={{backgroundColor: `${itemBackground}`}}>
                     Update Profile
                   </button>
                   <div className="clearfix" />
@@ -123,7 +125,7 @@ class Users extends Component {
             <div className="card card-profile">
               <div className="card-avatar">
                 <a href="#pablo">
-                  <img className="img" src="./img/faces/marc.jpg" alt=""/>
+                  <img className="img" src="./assets/img/faces/marc.jpg" alt=""/>
                 </a>
               </div>
               <div className="card-body">
@@ -134,7 +136,7 @@ class Users extends Component {
                   human foundation in truth And I love you like Kanye loves
                   Kanye I love Rick Owens’ bed design but the back is...
                 </p>
-                <a href="#pablo" className="btn btn-primary btn-round">
+                <a href="#pablo" className="btn btn-primary btn-round"  style={{backgroundColor: `${itemBackground}`}}>
                   Follow
                 </a>
               </div>
@@ -149,6 +151,7 @@ const mapStateToProps = state => {
   return {
     usersList: state.userReducer.usersList,
     loaded: state.userReducer.loaded,
+    itemBackground: state.commonReducer.itemBackground
   }
 }
 export default connect(mapStateToProps, { getUsers, setActivePage } )(Users);

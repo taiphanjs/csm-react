@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { getUsers } from '../../store/user/userActions';
 import HeaderBoard from './DashBoard/HeaderBoard';
 import MainBoard from './DashBoard/MainBoard';
 import Task from './DashBoard/Task';
 import Employee from './DashBoard/Employee';
+import { getUsers } from '../../store/user/userActions';
+import { getTasks } from '../../store/dashboard/dashboardActions';
 
 class DashBoard extends Component {
   componentDidMount() {
     this.props.getUsers();
+    this.props.getTasks();
   }
   render() {
-    const { usersList } = this.props;
+    const { usersList, tasksList } = this.props;
     const userItem = usersList.slice(0, 4).map((user, i) => (
       <tr key={i}>
         <td>{i + 1}</td>
@@ -25,7 +27,7 @@ class DashBoard extends Component {
         <HeaderBoard />
         <MainBoard />
         <div className="row">
-          <Task />
+          <Task tasksList={tasksList} />
           <Employee userItem={userItem} />
         </div>
       </div>
@@ -36,7 +38,8 @@ class DashBoard extends Component {
    
 const mapStateToProps = state => {
   return {
-    usersList: state.userReducer.usersList
+    usersList: state.userReducer.usersList,
+    tasksList: state.dashboardReducer.tasksList,
   }
 }
-export default connect(mapStateToProps, { getUsers })(DashBoard);
+export default connect(mapStateToProps, { getUsers, getTasks })(DashBoard);

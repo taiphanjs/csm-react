@@ -1,7 +1,102 @@
 import React, { Component } from "react";
 
 class Task extends Component {
+  chunkTasks = (arr, size) => {
+    let tempArr = [];
+    for (let i = 0; i < arr.length; i += size) {
+      let rsChunk = arr.slice(i, i + size);
+      tempArr.push(rsChunk);
+    }
+    return tempArr;
+  };
+
   render() {
+    const hardData = [
+      {
+        id: 1,
+        title: "profile",
+        icon: 'bug_report',
+        iconName: 'Bugs'
+      },
+      {
+        id: 2,
+        title: "messages",
+        icon: 'code',
+        iconName: 'Website'
+      },
+      {
+        id: 2,
+        title: "settings",
+        icon: 'cloud',
+        iconName: 'Server'
+      }
+    ];
+    const tasks = this.chunkTasks(this.props.tasksList.slice(0, 12), 4);
+    for (let i in tasks) tasks[i].title = hardData[i].title;
+    const tasksPanes = tasks.map((taskList, i) => (
+      <div
+        className={i === 0 ? "tab-pane active show" : "tab-pane"}
+        id={taskList.title}
+        key={i}
+      >
+        <table className="table">
+          <tbody>
+            {taskList.map((task, i) => (
+              <tr key={i}>
+                <td>
+                  <div className="form-check">
+                    <label className="form-check-label">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue
+                        defaultChecked={task.completed}
+                      />
+                      <span className="form-check-sign">
+                        <span className="check" />
+                      </span>
+                    </label>
+                  </div>
+                </td>
+                <td>{task.title}</td>
+                <td className="td-actions text-right">
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title="Edit Task"
+                    className="btn btn-primary btn-link btn-sm"
+                  >
+                    <i className="material-icons">edit</i>
+                  </button>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title="Remove"
+                    className="btn btn-danger btn-link btn-sm"
+                  >
+                    <i className="material-icons">close</i>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ));
+
+    const taskControl = hardData.map((data, i) => (
+      <li className="nav-item" key={i}>
+        <a
+          className={i === 0 ? "nav-link active" : "nav-link"}
+          href={`#${data.title}`}
+          data-toggle="tab"
+        >
+          <i className="material-icons">{data.icon}</i> {data.iconName}
+          <div className="ripple-container" />
+        </a>
+      </li>
+    ));
+    
     return (
       <div className="col-lg-6 col-md-12">
         <div className="card">
@@ -10,402 +105,15 @@ class Task extends Component {
               <div className="nav-tabs-wrapper">
                 <span className="nav-tabs-title">Tasks:</span>
                 <ul className="nav nav-tabs" data-tabs="tabs">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link active"
-                      href="#profile"
-                      data-toggle="tab"
-                    >
-                      <i className="material-icons">bug_report</i> Bugs
-                      <div className="ripple-container" />
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#messages" data-toggle="tab">
-                      <i className="material-icons">code</i> Website
-                      <div className="ripple-container" />
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#settings" data-toggle="tab">
-                      <i className="material-icons">cloud</i> Server
-                      <div className="ripple-container" />
-                    </a>
-                  </li>
+                  { taskControl }
                 </ul>
               </div>
             </div>
           </div>
           <div className="card-body">
             <div className="tab-content">
-              <div className="tab-pane active" id="profile">
-                <table className="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                              defaultChecked
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Sign contract for "What are conference organizers afraid
-                        of?"
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Lines From Great Russian Literature? Or E-mails From My
-                        Boss?
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Flooded: One year later, assessing what was lost and
-                        what was found when a ravaging rain swept through metro
-                        Detroit
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                              defaultChecked
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Create 4 Invisible User Experiences you Never Knew About
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="tab-pane" id="messages">
-                <table className="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                              defaultChecked
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Flooded: One year later, assessing what was lost and
-                        what was found when a ravaging rain swept through metro
-                        Detroit
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Sign contract for "What are conference organizers afraid
-                        of?"
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="tab-pane" id="settings">
-                <table className="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Lines From Great Russian Literature? Or E-mails From My
-                        Boss?
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                              defaultChecked
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Flooded: One year later, assessing what was lost and
-                        what was found when a ravaging rain swept through metro
-                        Detroit
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <label className="form-check-label">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue
-                              defaultChecked
-                            />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>
-                        Sign contract for "What are conference organizers afraid
-                        of?"
-                      </td>
-                      <td className="td-actions text-right">
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Edit Task"
-                          className="btn btn-primary btn-link btn-sm"
-                        >
-                          <i className="material-icons">edit</i>
-                        </button>
-                        <button
-                          type="button"
-                          rel="tooltip"
-                          title="Remove"
-                          className="btn btn-danger btn-link btn-sm"
-                        >
-                          <i className="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+              { tasksPanes }
+             </div>
           </div>
         </div>
       </div>
